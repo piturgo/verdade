@@ -1,268 +1,266 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<title>Verdade Seletiva</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verdade Seletiva</title>
+    <style>
+        :root {
+            --cor-realidade: #00c853;
+            --cor-midia: #d50000;
+            --bg-escuro: #121212;
+            --bg-claro: #ffffff;
+            --texto-escuro: #222;
+            --texto-claro: #f1f1f1;
+        }
 
-<style>
-    body {
-        margin: 0;
-        font-family: 'Segoe UI', Arial, sans-serif;
-        background: #111;
-        color: #222;
-    }
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: var(--bg-escuro);
+            color: var(--texto-claro);
+            line-height: 1.6;
+        }
 
-    .container {
-        display: flex;
-        height: 100vh;
-    }
+        /* Layout Responsivo */
+        .container {
+            display: flex;
+            flex-direction: column; /* Mobile first: empilhado */
+            min-height: 100vh;
+        }
 
-    .coluna {
-        width: 50%;
-        display: flex;
-        flex-direction: column;
-    }
+        @media (min-width: 992px) {
+            .container {
+                flex-direction: row; /* Desktop: lado a lado */
+            }
+        }
 
-    /* LADO REALIDADE */
-    .realidade {
-        background: #1e1e1e;
-        color: #f1f1f1;
-        border-right: 4px solid #00c853;
-    }
+        .coluna {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
 
-    /* LADO MIDIA */
-    .midia {
-        background: #ffffff;
-        color: #222;
-        border-left: 4px solid #d50000;
-    }
+        /* Estilo Lado REALIDADE */
+        .realidade {
+            background: #1a1a1a;
+            border-bottom: 8px solid var(--cor-realidade);
+        }
 
-    .header {
-        padding: 20px;
-        font-size: 24px;
-        font-weight: bold;
-        text-align: center;
-        letter-spacing: 1px;
-    }
+        @media (min-width: 992px) {
+            .realidade {
+                border-bottom: none;
+                border-right: 6px solid var(--cor-realidade);
+            }
+        }
 
-    .realidade .header {
-        background: #00c853;
-        color: #000;
-    }
+        /* Estilo Lado MIDIA */
+        .midia {
+            background: var(--bg-claro);
+            color: var(--texto-escuro);
+        }
 
-    .midia .header {
-        background: #d50000;
-        color: #fff;
-    }
+        /* Cabeçalhos */
+        .header {
+            padding: 30px 20px;
+            font-size: 1.5rem;
+            font-weight: 800;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
 
-    .conteudo {
-        flex: 1;
-        padding: 20px;
-        font-size: 16px;
-        line-height: 1.6;
-    }
+        .realidade .header {
+            background: var(--cor-realidade);
+            color: #000;
+        }
 
-    .box-base {
-        padding: 15px;
-        font-size: 14px;
-        border-top: 2px solid rgba(0,0,0,0.2);
-    }
+        .midia .header {
+            background: var(--cor-midia);
+            color: #fff;
+        }
 
-    .realidade .box-base {
-        background: #2a2a2a;
-    }
+        /* Conteúdo Interno */
+        .conteudo {
+            padding: 25px;
+            flex: 1;
+        }
 
-    .midia .box-base {
-        background: #f2f2f2;
-    }
+        .conteudo p {
+            margin-bottom: 20px;
+        }
 
-    h2 {
-        margin-top: 0;
-        font-size: 16px;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-    }
+        /* Ajuste de Vídeos e Imagens para Mobile */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* Proporção 16:9 */
+            height: 0;
+            overflow: hidden;
+            max-width: 100%;
+            background: #000;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
 
-    ul {
-        padding-left: 18px;
-    }
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
 
-    li {
-        margin-bottom: 8px;
-    }
-</style>
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 20px auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        /* Listas e Boxes */
+        .box-base {
+            padding: 25px;
+            background: rgba(0,0,0,0.05);
+            border-top: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .realidade .box-base {
+            background: #252525;
+        }
+
+        .midia .box-base {
+            background: #f9f9f9;
+        }
+
+        h2 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: inherit;
+            border-left: 4px solid;
+            padding-left: 10px;
+        }
+
+        .realidade h2 { border-color: var(--cor-realidade); }
+        .midia h2 { border-color: var(--cor-midia); }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            font-size: 1.1rem;
+            margin: 25px 0 10px 0;
+        }
+
+        /* Utilitários */
+        .destaque-negro {
+            color: #e2dfdb;
+        }
+    </style>
 </head>
-
 <body>
 
 <div class="container">
 
-    <!-- REALIDADE -->
-    <div class="coluna realidade">
-        <div class="header">O que aconteceu de verdade</div>
+    <section class="coluna realidade">
+        <div class="header">⚖️ O que aconteceu de verdade</div>
 
         <div class="conteudo">
-            <p><strong>Evento:</strong> Vorcaro vai fazer delação premiada.<br>
-			Já foi informado que o banqueiro do Banco Master, Vorcaro, irá nos 
-			próximos dias colaborar com as autoridades delatando outro 
-			envolvidos na fraude financeira do Banco Master.<br><br>Vorcaro 
-			(Banco Master) pode delatar:<br>Políticos (Centrão, Ciro Nogueira - 
-			"grande amigo");<br>Governador Ibaneis Rocha (reuniões sobre venda 
-			ao BRB);<br>Magistrados e ministros do STF;<br>Fraude R$50bi, 
-			lavagem e quadrilha.<br><br>Ciro Nogueira, amigo do mercado 
-			financeiro (dono de mídias como UOL e Valor Econômico), celebrou 
-			emendas pró-Master.<br>Delação explosiva abala Brasília.</p>
+            <p><strong>🚨 Evento:</strong> Vorcaro vai fazer delação premiada.<br>
+            Já foi informado que o banqueiro do Banco Master, Vorcaro, irá nos próximos dias colaborar com as autoridades delatando outro envolvidos na fraude financeira do Banco Master.</p>
+            
+            <p><strong>Vorcaro (Banco Master) pode delatar:</strong><br>
+            📌 Políticos (Centrão, Ciro Nogueira - "grande amigo");<br>
+            📌 Governador Ibaneis Rocha (reuniões sobre venda ao BRB);<br>
+            📌 Magistrados e ministros do STF;<br>
+            📌 Fraude R$50bi, lavagem e quadrilha.</p>
 
-            <p><strong>Resumo:</strong> </p>
-        	<ul class="KsbFXc U6u95" data-complete="true" data-processed="true" data-sfc-cb="" data-sfc-root="c" jsaction="" jscontroller="mPWODf" jsuid="eb4vsc_p" style="margin: 0px; padding: 0px; margin-block: 12px 16px; font-family: &quot;Google Sans&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; letter-spacing: normal; padding-inline-start: 16px; color: rgb(226, 223, 219); font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgb(24, 26, 27); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;">
-				<li>Patrocínios de Eventos: O&nbsp;Banco Master&nbsp;foi um dos 
-				patrocinadores do evento de 25 anos do jornal&nbsp;Valor Econômico&nbsp;em 
-				Nova York (maio de 2024), além de financiar o Camarote Quem/O 
-				Globo no Carnaval do Rio entre 2022 e 2024.</li>
-				<li>Seletividade Editorial: Críticos argumentam que a Globo 
-				agiria como um "tribunal" seletivo, denunciando agora figuras 
-				ligadas a Vorcaro, enquanto no passado mantinha relações 
-				comerciais estreitas com o banqueiro.</li>
-				<li>Conflito de Interesses: A acusação é de que a aceitação de 
-				patrocínios milionários de uma instituição hoje sob investigação 
-				por fraude e liquidação gera uma sombra sobre a isenção do 
-				grupo.&nbsp;</li>
-			</ul>
-			<br class="Apple-interchange-newline">
+            <p>💰 Ciro Nogueira, amigo do mercado financeiro (dono de mídias como UOL e Valor Econômico), celebrou emendas pró-Master.<br>
+            💣 Delação explosiva abala Brasília.</p>
+
+            <p><strong>📝 Resumo:</strong></p>
+            <ul style="color: #e2dfdb;">
+                <li><strong>Patrocínios de Eventos:</strong> O Banco Master foi um dos patrocinadores do evento de 25 anos do jornal Valor Econômico em Nova York (maio de 2024), além de financiar o Camarote Quem/O Globo no Carnaval do Rio entre 2022 e 2024.</li>
+                <li><strong>Seletividade Editorial:</strong> Críticos argumentam que a Globo agiria como um "tribunal" seletivo, denunciando agora figuras ligadas a Vorcaro, enquanto no passado mantinha relações comerciais estreitas com o banqueiro.</li>
+                <li><strong>Conflito de Interesses:</strong> A acusação é de que a aceitação de patrocínios milionários de uma instituição hoje sob investigação por fraude e liquidação gera uma sombra sobre a isenção do grupo.</li>
+            </ul>
+
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/ksKJiKzR2Ek" title="ENVOLVIDA COM O MASTER GLOBO PROTEGE CENTRÃO E BLINDA MERCADO POR MEDO DE SER DELATADA POR VORCARO" allowfullscreen></iframe>
+            </div>
+
+            <p>📺 Este vídeo do canal <strong>O Historiador</strong>, apresentado por Carlito Neto, aborda as ligações entre a Rede Globo, o "Centrão" e o escândalo envolvendo o Banco Master e o empresário Daniel Vorcaro.</p>
+            
+            <p><strong>Aqui estão os pontos principais do vídeo:</strong></p>
+            <ol>
+                <li><strong>Crítica à Narrativa da Rede Globo:</strong> O autor critica um PowerPoint exibido pela Globo News que tenta associar o escândalo do Banco Master ao governo Lula e ao PT [00:00]. Carlito argumenta que o escândalo está, na verdade, profundamente ligado ao governo Bolsonaro e ao Centrão, apelidando-o de "Bolsonomaster" [04:14].</li>
+                <li><strong>A Blindagem do Centrão e do Mercado:</strong> O vídeo explica que a mídia tradicional poupa figuras como Ciro Nogueira e Arthur Lira porque o Centrão é a ponte entre o mercado financeiro (Faria Lima) e o Congresso Nacional [05:21]. Ele afirma que veículos como a Globo, Folha e Estadão são financiados ou pertencem a interesses do mercado financeiro [06:41].</li>
+                <li><strong>Relação de Daniel Vorcaro com a Globo:</strong> Carlito aponta que Daniel Vorcaro era um patrocinador frequente de eventos ligados à Globo, incluindo o programa de Luciano Huck, eventos do Valor Econômico e camarotes no Carnaval do Rio de Janeiro [08:03]. Por esse motivo, a emissora teria receio de uma possível delação que a envolvesse diretamente.</li>
+                <li><strong>Interesses Económicos e Reformas:</strong> O autor discute como o Centrão e empresários trabalham para barrar pautas sociais, como o fim da escala 6x1, visando manter a exploração do trabalhador e os lucros do mercado [09:26]. Ele sustenta que o mercado "odeia o pobre" e não aceita a ascensão social das classes mais baixas [18:18].</li>
+                <li><strong>Apelo à Mídia Independente:</strong> Ao final, o apresentador faz um apelo para o fortalecimento da mídia independente como forma de combater as narrativas da grande mídia [11:58]. Ele relata dificuldades financeiras para manter o seu projeto "Folha em Foco" e pede o apoio dos seguidores para continuar o trabalho de jornalismo investigativo [16:26].</li>
+            </ol>
+            <p>✊ O vídeo termina reforçando a necessidade de organização popular para enfrentar a "máquina" mediática e financeira que controla o país [24:12].</p>
         </div>
 
         <div class="box-base">
-            <h2>Fatos e comprovações</h2>
+            <h2>✅ Fatos e comprovações</h2>
             <ul>
-                <li>Delação Premiada: Em 20 de março de 2026, Daniel Vorcaro 
-				assinou um acordo formal de colaboração com a Polícia Federal e 
-				a PGR, sob supervisão do ministro André Mendonça (STF), após ser 
-				transferido para Brasília.</li>
-				<li>Fraude de R$ 50 bilhões: A Operação Compliance Zero 
-				investiga um rombo bilionário que levou à liquidação 
-				extrajudicial do Banco Master pelo Banco Central em novembro de 
-				2025, envolvendo lavagem de dinheiro e organização criminosa.</li>
-				<li>Envolvimento de Ibaneis Rocha: Relatórios do Coaf apontaram 
-				movimentações de R$ 43 milhões no escritório do governador do DF 
-				ligadas a fundos suspeitos. Vorcaro confessou ter negociado com 
-				Ibaneis a venda de ativos ao Banco de Brasília (BRB).</li>
-				<li>Conexão com Ciro Nogueira: Investigações da PF indicam que o 
-				senador e líderes do Centrão atuaram para garantir emendas e 
-				aportes no Fundo Garantidor de Créditos (FGC) que beneficiaram 
-				indiretamente a estrutura do Banco Master.</li>
+                <li><strong>Delação Premiada:</strong> Em 20 de março de 2026, Daniel Vorcaro assinou um acordo formal de colaboração com a Polícia Federal e a PGR, sob supervisão do ministro André Mendonça (STF), após ser transferido para Brasília.</li>
+                <li><strong>Fraude de R$ 50 bilhões:</strong> A Operação Compliance Zero investiga um rombo bilionário que levou à liquidação extrajudicial do Banco Master pelo Banco Central em novembro de 2025, envolvendo lavagem de dinheiro e organização criminosa.</li>
+                <li><strong>Envolvimento de Ibaneis Rocha:</strong> Relatórios do Coaf apontaram movimentações de R$ 43 milhões no escritório do governador do DF ligadas a fundos suspeitos. Vorcaro confessou ter negociado com Ibaneis a venda de ativos ao Banco de Brasília (BRB).</li>
+                <li><strong>Conexão com Ciro Nogueira:</strong> Investigações da PF indicam que o senador e líderes do Centrão atuaram para garantir emendas e aportes no Fundo Garantidor de Créditos (FGC) que beneficiaram indiretamente a estrutura do Banco Master.</li>
             </ul>
         </div>
-    </div>
+    </section>
 
-    <!-- MIDIA -->
-    <div class="coluna midia">
-        <div class="header">O que foi noticiado (Verdade Seletiva)</div>
+    <section class="coluna midia">
+        <div class="header">📺 O que foi noticiado (Verdade Seletiva)</div>
 
         <div class="conteudo">
-            <p>
-			<img alt="Eles precisam obedecer ao seus patrões" height="330" src="gnews.jpg" width="549"></p>
+            <p style="background-color: #181a1b; color: #e2dfdb; padding: 15px; border-radius: 5px;">
+                Em 20 de março de 2026, o "Estúdio i" da GloboNews utilizou um gráfico, semelhante ao "PowerPoint da Lava Jato", para ilustrar supostas conexões entre Daniel Vorcaro, do Banco Master, e o presidente Lula, baseando-se em mensagens da Polícia Federal que mencionam um encontro no Planalto. O material destaca conversas onde Vorcaro relata proximidade com o governo e se apresenta como um "outsider" contra grandes bancos.
+            </p>
+
+            <img alt="Eles precisam obedecer ao seus patrões" src="gnews.jpg">
+            <p style="text-align: center; font-style: italic; font-size: 0.9rem;">⚠️ Análise da narrativa mediática vs. fatos documentados.</p>
         </div>
 
         <div class="box-base">
-            <h2>Fatos, histórico e padrões do veículo</h2>
-            <ul>
-                <li>
-				<h3 dir="auto">1. Oposição ao 13º salário (1962)</h3>
-				<p dir="auto" style="white-space: pre-wrap;">Em 26 de abril de 
-				1962, o jornal <strong>O Globo</strong> estampou na capa: “<strong>Considerado 
-				desastroso para o país um 13º mês de salário</strong>”. A 
-				manchete atacava a proposta do presidente João Goulart de criar 
-				o 13º salário, alegando que quebraria a economia. A Globo (e a 
-				FIESP) se posicionaram contra o benefício trabalhista, alinhada 
-				ao empresariado. O 13º virou lei em 1962 e foi 
-				constitucionalizado em 1988. Críticos veem isso como manipulação 
-				para proteger interesses econômicos do grupo contra direitos dos 
-				trabalhadores.</p>
-				<h3 dir="auto">2. Apoio à ditadura militar (1964–1985)</h3>
-				<p dir="auto" style="white-space: pre-wrap;">O Globo apoiou 
-				editorialmente o golpe de 1964, chamando-o de “Revolução” e 
-				vendo-o como “única alternativa para manter a democracia”. 
-				Roberto Marinho e o grupo beneficiaram-se diretamente: receberam 
-				concessões de TV, infraestrutura da Embratel (dinheiro público) 
-				e publicidade estatal, criando o monopólio da Rede Globo. 
-				Ignoraram ou minimizaram protestos, como o comício das Diretas 
-				Já em 1984 na Praça da Sé (SP), com mais de 200 mil pessoas — o 
-				Jornal Nacional tratou como “aniversário da cidade”. Em 2013, a 
-				própria Globo admitiu em editorial (lido por William Bonner) que 
-				foi um “erro” e se desculpou. Críticos afirmam que o apoio 
-				consolidou o poder da emissora durante 21 anos de regime.</p>
-				<h3 dir="auto">3. Diretas Já (1984) – censura indireta</h3>
-				<p dir="auto" style="white-space: pre-wrap;">A Rede Globo quase 
-				não cobriu os comícios massivos pelo fim da ditadura. Rejeitou 
-				até matéria paga sobre o protesto em Curitiba. Só entrou no ar 
-				quando o Jornal Nacional já estava no ar, sem dar destaque 
-				proporcional. Isso beneficiou o regime e a transição controlada 
-				(Sarney). Boni (ex-diretor) admitiu que a Globo “deveria ter 
-				feito mais”.</p>
-				<h3 dir="auto">4. Debate presidencial Collor x Lula (1989) – 
-				edição tendenciosa</h3>
-				<p dir="auto" style="white-space: pre-wrap;">No último debate 
-				antes do segundo turno, o Jornal Nacional exibiu uma versão 
-				editada que favoreceu Fernando Collor: deu 1 minuto e 12 
-				segundos a mais de tempo para ele, selecionou trechos onde 
-				Collor parecia dominante e cortou respostas de Lula. Roberto 
-				Marinho admitiu simpatia por Collor; a Globo reconheceu o “erro” 
-				da edição desbalanceada. Análises mostram que isso ajudou a 
-				reverter a curva de Lula nas pesquisas. Collor venceu por margem 
-				pequena. O PT processou a Globo no TSE.</p>
-				<h3 dir="auto">5. Pedaladas fiscais e impeachment de Dilma 
-				(2015–2016)</h3>
-				<p dir="auto" style="white-space: pre-wrap;">A Globo deu 
-				cobertura massiva e ininterrupta às “pedaladas fiscais” 
-				(manobras contábeis para financiar programas sociais), 
-				tratando-as como crime grave e principal motivo do impeachment. 
-				Transmitiu ao vivo a sessão da Câmara por mais de 8 horas. 
-				Estudos (como da UFRJ e análises independentes) apontam 
-				demonização sistemática de Dilma e PT no Jornal Nacional e O 
-				Globo, associando-os seletivamente à corrupção e recessão, 
-				enquanto minimizava outros aspectos. Críticos chamam de “farsa 
-				midiática”. Posteriormente, o TRF-1 arquivou ações contra Dilma 
-				por improbidade nas pedaladas (2023), confirmando que não 
-				configuravam crime. A Globo nega manipulação, mas o volume e o 
-				tom foram criticados como favorecimento à elite econômica e 
-				oposição ao PT.</p>
-				<h3 dir="auto">6. Triplex do Guarujá e Sítio de Atibaia (Lava 
-				Jato, 2016–2019)</h3>
-				<p dir="auto" style="white-space: pre-wrap;">A Globo deu 
-				destaque exaustivo aos casos contra Lula: matéria de 2010 no O 
-				Globo sobre o triplex foi usada como indício pela Justiça; 
-				reportagens trataram o triplex e o sítio como provas definitivas 
-				de propina da OAS. Cobertura diária no Jornal Nacional reforçou 
-				a narrativa de corrupção do PT. Sergio Moro condenou Lula nesses 
-				processos (9 anos e 6 meses + 12 anos e 11 meses). Em 2021, o 
-				STF (Fachin) anulou todas as condenações da Lava Jato no Paraná 
-				por parcialidade. Críticos (incluindo Vaza Jato) apontam que a 
-				Globo atuou como “braço midiático” da operação, beneficiando-se 
-				politicamente ao enfraquecer o PT. A própria Globo usou suas 
-				reportagens como “prova” em processos.</p>
-				<h3 dir="auto">Outros momentos relevantes (padrão histórico)</h3>
-				<ul dir="auto">
-					<li>Mensalão (2005): Cobertura intensa contra Lula/PT, com 
-					tom de “escândalo do século”.</li>
-					<li>Apoio a FHC (1994–2002): Editoriais favoráveis à 
-					reeleição e ao Plano Real.</li>
-					<li>2013–2018: Acusações de viés anti-PT durante protestos e 
-					eleições.</li>
-				</ul>
-				<p dir="auto" style="white-space: pre-wrap;"><strong>Conclusão</strong>: 
-				Esses casos mostram um padrão recorrente de alinhamento com 
-				interesses conservadores/empresariais (ditadura, Collor, 
-				anti-PT), beneficiando o grupo com monopólio, publicidade e 
-				influência política. A Globo reconheceu erros pontuais (ditadura 
-				e edição de 1989), mas nega manipulação sistemática — atribui a 
-				“jornalismo independente”. Críticos de esquerda veem campanha de 
-				décadas contra governos populares. Fontes primárias (Memória 
-				Globo, Wikipedia de controvérsias, estudos acadêmicos) confirmam 
-				os fatos acima.</p>
-				</li>
-            </ul>
+            <h2>🔍 Fatos, histórico e padrões do veículo</h2>
+            
+            <h3>1. Oposição ao 13º salário (1962) 📉</h3>
+            <p>Em 26 de abril de 1962, o jornal <strong>O Globo</strong> estampou na capa: “<strong>Considerado desastroso para o país um 13º mês de salário</strong>”. A manchete atacava a proposta do presidente João Goulart de criar o 13º salário, alegando que quebraria a economia. A Globo (e a FIESP) se posicionaram contra o benefício trabalhista, alinhada ao empresariado. O 13º virou lei em 1962 e foi constitucionalizado em 1988.</p>
+
+            <h3>2. Apoio à ditadura militar (1964–1985) 🎖️</h3>
+            <p>O Globo apoiou editorialmente o golpe de 1964, chamando-o de “Revolução”. Roberto Marinho e o grupo beneficiaram-se diretamente com concessões e publicidade estatal. Ignoraram protestos como as Diretas Já em 1984 — o Jornal Nacional tratou como “aniversário da cidade”. Em 2013, a própria Globo admitiu em editorial que foi um “erro” e se desculpou.</p>
+
+            <h3>3. Diretas Já (1984) – censura indireta 🤐</h3>
+            <p>A Rede Globo quase não cobriu os comícios massivos pelo fim da ditadura. Só deu destaque quando não podia mais ignorar. Isso beneficiou o regime e a transição controlada. Boni (ex-diretor) admitiu que a Globo “deveria ter feito mais”.</p>
+
+            <h3>4. Debate presidencial Collor x Lula (1989) – edição tendenciosa 🎞️</h3>
+            <p>No último debate antes do segundo turno, o Jornal Nacional exibiu uma versão editada que favoreceu Fernando Collor. A Globo reconheceu o “erro” da edição desbalanceada anos depois. Análises mostram que isso ajudou a reverter a curva de Lula nas pesquisas.</p>
+
+            <h3>5. Pedaladas fiscais e impeachment de Dilma (2015–2016) 🏛️</h3>
+            <p>A Globo deu cobertura massiva às “pedaladas fiscais”, tratando-as como crime grave. Em 2023, o TRF-1 arquivou ações contra Dilma, confirmando que não configuravam crime. Críticos apontam demonização sistemática do PT no período.</p>
+
+            <h3>6. Triplex e Sítio de Atibaia (Lava Jato, 2016–2019) ⚖️</h3>
+            <p>A Globo deu destaque exaustivo aos casos contra Lula. Em 2021, o STF anulou as condenações por parcialidade. Críticos apontam que a Globo atuou como “braço midiático” da operação Lava Jato.</p>
+
+            <hr>
+            <p><strong>Conclusão:</strong> Esses casos mostram um padrão recorrente de alinhamento com interesses conservadores e empresariais. A Globo reconheceu erros pontuais, mas críticos veem uma campanha de décadas contra governos populares. 📑</p>
         </div>
-    </div>
+    </section>
 
 </div>
 
